@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>漫画 新規登録</title>
+</head>
+<body>
+
+<h2>漫画 新規登録</h2>
+
+<form action="/manga" method="POST">
+  <table>
+    <tr>
+      <th>作品名</th>
+      <td><input type="text" name="title" required></td>
+    </tr>
+    <tr>
+      <th>作者</th>
+      <td><input type="text" name="author" required></td>
+    </tr>
+    <tr>
+      <th>ジャンル</th>
+      <td><input type="text" name="genre"></td>
+    </tr>
+    <tr>
+      <th>連載開始年</th>
+      <td><input type="text" name="start" required></td>
+    </tr>
+    <tr>
+      <th>巻数</th>
+      <td><input type="text" name="volumes" required></td>
+    </tr>
+  </table>
+
+  <input type="submit" value="登録">
+</form>
+
+<a href="/manga">一覧に戻る</a>
+
+</body>
+</html>

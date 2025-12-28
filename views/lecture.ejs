@@ -1,0 +1,36 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>講義一覧</title>
+</head>
+<body>
+  <h2>講義一覧</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>講義名</th>
+      <th>担当教員</th>
+      <th>曜日時限</th>
+    </tr>
+
+    <% let number = 0 %>
+    <% for (let row of data) { %>
+      <tr>
+        <td><%= row.id %></td>
+        <td>
+          <a href="/lecture/<%= number %>">
+            <%= row.title %>
+          </a>
+        </td>
+        <td><%= row.teacher %></td>
+        <td><%= row.day %></td>
+      </tr>
+      <% number += 1 %>
+    <% } %>
+  </table>
+
+  <a href="/lecture/create">追加</a>
+</body>
+</html>

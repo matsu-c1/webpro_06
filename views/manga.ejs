@@ -1,0 +1,34 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>漫画一覧</title>
+</head>
+<body>
+  <h2>漫画一覧</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>作品名</th>
+      <th>作者</th>
+    </tr>
+
+    <% let number = 0 %>
+    <% for (let row of data) { %>
+      <tr>
+        <td><%= row.id %></td>
+        <td>
+          <a href="/manga/<%= number %>">
+            <%= row.title %>
+          </a>
+        </td>
+        <td><%= row.author %></td>
+      </tr>
+      <% number += 1 %>
+    <% } %>
+  </table>
+
+  <a href="/manga/create">追加</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.title %></title>
+</head>
+<body>
+  <h2><%= data.title %> の編集</h2>
+
+  <form action="/manga/update/<%= data.id - 1 %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr>
+        <td>作品名</td>
+        <td><input type="text" name="title" value="<%= data.title %>"></td>
+      </tr>
+      <tr>
+        <td>作者</td>
+        <td><input type="text" name="author" value="<%= data.author %>"></td>
+      </tr>
+      <tr>
+        <td>ジャンル</td>
+        <td><input type="text" name="genre" value="<%= data.genre %>"></td>
+      </tr>
+      <tr>
+        <td>連載開始年</td>
+        <td><input type="text" name="start" value="<%= data.start %>"></td>
+      </tr>
+      <tr>
+        <td>巻数</td>
+        <td><input type="text" name="volumes" value="<%= data.volumes %>"></td>
+      </tr>
+    </table>
+
+    <input type="submit" value="更新">
+  </form>
+
+  <hr>
+
+  <a href="/manga/delete/<%= data.id - 1 %>"
+     onclick="return confirm('本当に削除しますか？');">
+    削除
+  </a>
+
+  <br><br>
+  <a href="/manga">一覧に戻る</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.title %></title>
+</head>
+<body>
+  <h2><%= data.title %> の編集</h2>
+
+  <form action="/lecture/update/<%= data.id - 1 %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr>
+        <td>講義名</td>
+        <td><input type="text" name="title" value="<%= data.title %>"></td>
+      </tr>
+      <tr>
+        <td>担当教員</td>
+        <td><input type="text" name="teacher" value="<%= data.teacher %>"></td>
+      </tr>
+      <tr>
+        <td>曜日・時限</td>
+        <td><input type="text" name="day" value="<%= data.day %>"></td>
+      </tr>
+      <tr>
+        <td>教室</td>
+        <td><input type="text" name="room" value="<%= data.room %>"></td>
+      </tr>
+      <tr>
+        <td>単位数</td>
+        <td><input type="text" name="credit" value="<%= data.credit %>"></td>
+      </tr>
+    </table>
+
+    <input type="submit" value="更新">
+  </form>
+
+  <hr>
+
+  <a href="/lecture/delete/<%= data.id - 1 %>"
+     onclick="return confirm('本当に削除しますか？');">
+    削除
+  </a>
+
+  <br><br>
+  <a href="/lecture">一覧に戻る</a>
+</body>
+</html>

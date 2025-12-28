@@ -79,12 +79,12 @@ app.get("/keiyo2/:number", (req, res) => {
 });
 
 // ===== 映画データ =====
+// レポート仕様: ID, title, director, year, genre 
 let movie = [
-  { id:1, title:"千と千尋の神隠し", director:"宮崎駿", genre:"アニメ", year:2001, length:125 },
-  { id:2, title:"君の名は。", director:"新海誠", genre:"アニメ", year:2016, length:107 },
-  { id:3, title:"ゴジラ", director:"本多猪四郎", genre:"特撮", year:1954, length:96 },
+  { id:1, title:"千と千尋の神隠し", director:"宮崎駿", year:2001, genre:"アニメ" },
+  { id:2, title:"ゴッドファーザー", director:"フランシス・コッポラ", year:1972, genre:"クライム" },
+  { id:3, title:"ショーシャンクの空に", director:"フランク・ダラボン", year:1994, genre:"ドラマ" },
 ];
-
 // 一覧
 app.get("/movie", (req, res) => {
   res.render('movie', { data: movie });
@@ -108,17 +108,15 @@ app.get("/movie/edit/:number", (req, res) => {
   res.render('movie_edit', { id: number, data: detail });
 });
 
-// 更新
+// 更新 
 app.post("/movie/update/:number", (req, res) => {
   movie[req.params.number].title = req.body.title;
   movie[req.params.number].director = req.body.director;
   movie[req.params.number].genre = req.body.genre;
   movie[req.params.number].year = req.body.year;
-  movie[req.params.number].length = req.body.length;
   res.redirect('/movie');
 });
-
-// 追加
+// 追加 
 app.post("/movie", (req, res) => {
   const id = movie.length + 1;
   movie.push({
@@ -126,8 +124,8 @@ app.post("/movie", (req, res) => {
     title: req.body.title,
     director: req.body.director,
     genre: req.body.genre,
-    year: req.body.year,
-    length: req.body.length
+    year: req.body.year
+    // length削除
   });
   res.redirect('/movie');
 });
@@ -143,12 +141,12 @@ app.get("/movie/:number", (req, res) => {
 
 
 // ===== 漫画データ =====
+// レポート仕様: ID, title, author, magazine, genre 
 let manga = [
-  { id:1, title:"ワンダンス", author:"珈琲", genre:"ダンス", start:2019, volumes:12 },
-  { id:2, title:"メダリスト", author:"つるまいかだ", genre:"フィギュアスケート", start:2020, volumes:10 },
-  { id:3, title:"ジョジョの奇妙な冒険", author:"荒木飛呂彦", genre:"バトル", start:1987, volumes:130 },
+  { id:1, title:"ONE PIECE", author:"尾田栄一郎", magazine:"週刊少年ジャンプ", genre:"冒険" },
+  { id:2, title:"葬送のフリーレン", author:"山田鐘人/アベツカサ", magazine:"週刊少年サンデー", genre:"ファンタジー" },
+  { id:3, title:"進撃の巨人", author:"諫山創", magazine:"別冊少年マガジン", genre:"ダークファンタジー" },
 ];
-
 // 一覧
 app.get("/manga", (req, res) => {
   res.render("manga", { data: manga });
@@ -172,16 +170,14 @@ app.get("/manga/edit/:number", (req, res) => {
   res.render("manga_edit", { id: number, data: detail });
 });
 
-// 更新
+// 更新 (magazineを追加し、start/volumesを削除)
 app.post("/manga/update/:number", (req, res) => {
   manga[req.params.number].title = req.body.title;
   manga[req.params.number].author = req.body.author;
+  manga[req.params.number].magazine = req.body.magazine; // 修正
   manga[req.params.number].genre = req.body.genre;
-  manga[req.params.number].start = req.body.start;
-  manga[req.params.number].volumes = req.body.volumes;
   res.redirect("/manga");
 });
-
 // 追加
 app.post("/manga", (req, res) => {
   const id = manga.length + 1;
@@ -189,9 +185,8 @@ app.post("/manga", (req, res) => {
     id: id,
     title: req.body.title,
     author: req.body.author,
-    genre: req.body.genre,
-    start: req.body.start,
-    volumes: req.body.volumes
+    magazine: req.body.magazine, // 修正
+    genre: req.body.genre
   });
   res.redirect("/manga");
 });
